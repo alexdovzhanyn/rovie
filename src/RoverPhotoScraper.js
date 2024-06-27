@@ -4,7 +4,6 @@ const fs = require('fs')
 const moment = require('moment')
 const environment = require('../environment')
 
-const NASA_API_KEY = 'xLXT6Z9ZHLcZUKAgnsd2b2ehsQVntWzt6hTVA49o'
 const NASA_ROVER_API_URL = `https://api.nasa.gov/mars-photos/api/v1/rovers`;
 const PHOTO_STATE_FILENAME = './.photo_read_state.json'
 
@@ -49,12 +48,12 @@ class RoverPhotoScraper {
   async fetchPhotosForRover(rover) {
     const response = await fetch(`${environment.NASA_ROVER_API_URL}/${rover}/latest_photos?api_key=${environment.NASA_API_KEY}`);
     const feed = await response.json();
-  
+
     if (!feed.latest_photos || !feed.latest_photos.length) {
       console.error(`${rover} Issue getting feed!`);
       return null
     }
- 
+
     return feed.latest_photos
   }
 
@@ -83,17 +82,17 @@ class RoverPhotoScraper {
 
       onSend({ embeds: message })
     })
-    
+
     if (newPhotos.length) {
       this.lastPostedPhotoIds[rover] = newPhotos[newPhotos.length - 1].id
-    }  
-    
+    }
+
     console.log(`${rover} | Finished posting photo batch. Latest posted ID is ${this.lastPostedPhotoIds[rover]}`)
   }
 
   async fetchAndPostPhotosForRover(rover, onSend) {
     const photos = await this.fetchPhotosForRover(rover);
-  
+
     await this.postPhotosForRover(rover, photos, onSend)
   }
 
