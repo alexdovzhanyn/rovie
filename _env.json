@@ -1,0 +1,9 @@
+{
+  "DISCORD_BOT_TOKEN": "",
+  "DISCORD_CHANNEL_ID": "",
+  "NASA_API_KEY": "",
+  "NASA_ROVER_API_URL": "https://api.nasa.gov/mars-photos/api/v1/rovers",
+  "PHOTO_STATE_FILENAME": "./.photo_read_state.json",
+  "ROVER_PHOTO_FREQUENCY_MS": 10800000,
+  "RICH_PRESENCE_FREQUENCY_MS": 30000
+}
